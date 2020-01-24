@@ -2,8 +2,8 @@ FROM centos:8
 
 WORKDIR /github/workspace
 
-RUN dnf install -y rpmdevtools dnf-utils && \
+RUN dnf install -y rpmdevtools dnf-utils spectool && \
     dnf clean all && \
     rm -r -f /var/cache/*
 
-CMD rpmbuild --define '_topdir /github/workspace' -ba SPECS/*.spec
+CMD spectool --get-files --all SPECS/*.spec ; rpmbuild --define '_topdir /github/workspace' -ba SPECS/*.spec
