@@ -7,5 +7,5 @@ RUN dnf install -y rpmdevtools dnf-utils spectool dnf-utils && \
     rm -r -f /var/cache/*
 
 CMD spectool --get-files --all SPECS/*.spec && \
-    yum-builddep SPECS/*.spec && \
+    yum-builddep --assumeyes SPECS/*.spec && \
     rpmbuild --define '_topdir /github/workspace' -ba SPECS/*.spec
