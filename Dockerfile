@@ -1,9 +1,9 @@
-FROM centos:8
+FROM centos:7
 
 WORKDIR /github/workspace
 
-RUN dnf install -y rpmdevtools dnf-utils spectool dnf-utils && \
-    dnf clean all && \
+RUN yum install -y rpmdevtools yum-utils spectool && \
+    yum clean all && \
     rm -r -f /var/cache/*
 
 CMD spectool --get-files --all SPECS/*.spec && \
