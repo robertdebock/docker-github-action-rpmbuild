@@ -1,5 +1,7 @@
 FROM centos:7
 
+LABEL maintainer="Robert de Bock <robert@meinit.nl>"
+
 WORKDIR /github/workspace
 
 RUN yum install -y rpmdevtools yum-utils spectool && \
