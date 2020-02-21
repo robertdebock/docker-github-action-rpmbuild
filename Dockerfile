@@ -1,5 +1,7 @@
 FROM centos:8
 
+LABEL maintainer="Robert de Bock <robert@meinit.nl>"
+
 WORKDIR /github/workspace
 
 RUN dnf install -y rpmdevtools dnf-utils spectool dnf-utils && \
