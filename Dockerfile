@@ -1,4 +1,4 @@
-FROM fedora:33
+FROM rockylinux/rockylinux:8
 
 LABEL maintainer="Robert de Bock <robert@meinit.nl>"
 
