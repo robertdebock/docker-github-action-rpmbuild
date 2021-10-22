@@ -1,14 +1,12 @@
-FROM centos:8
+FROM opensuse/leap:15
 
-LABEL maintainer="Robert de Bock <robert@meinit.nl>"
-LABEL build_date="2021-10-10"
+LABEL maintainer="Hugo Rodrigues <hugorodrigues@hugorodrigues.xyz>"
+LABEL build_date="2021-10-22"
 
 WORKDIR /github/workspace
 
-RUN dnf install -y rpmdevtools dnf-utils spectool dnf-utils && \
-    dnf clean all && \
-    rm -r -f /var/cache/*
+RUN zypper install -y rpmdevtools rpm-build
 
-CMD spectool --get-files --all SPECS/*.spec && \
-    yum-builddep --assumeyes SPECS/*.spec && \
+CMD rpmdev-spectool --get-files --all SPECS/*.spec && \
+    zypper  install -yn $(rpmspec --parse SPECS/*.spec | grep BuildRequires | awk '{print $2}' | sort | uniq | xargs) && \
     rpmbuild --define '_topdir /github/workspace' -ba SPECS/*.spec
