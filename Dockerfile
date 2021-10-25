@@ -5,7 +5,7 @@ LABEL build_date="2021-10-22"
 
 WORKDIR /github/workspace
 
-RUN yum install -y rpmdevtools yum-utils spectool && \
+RUN yum install -y rpmdevtools yum-utils spectool epel-release && \
     yum clean all && \
     rm -r -f /var/cache/*
 
